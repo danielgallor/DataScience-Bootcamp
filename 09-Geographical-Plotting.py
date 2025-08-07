@@ -65,10 +65,35 @@ layout = dict (
     title = '2014 Global GDP',
     geo = dict(
         showframe = False,
-        projection = {'type':'mercator'}
+        projection_type= "natural earth"
     )
 )
 
 choromap3 = go.Figure( data = [data], layout = layout)
 iplot(choromap3)
 choromap3.write_html("International GDP Map.html")
+
+#--- EXERCISES ---
+
+df = pd.read_csv('C:\\Users\\Daniel.Gallo\\OneDrive - Xodus Group\\Documents\\Data Science\\Py-DS-ML-Bootcamp-master\\Refactored_Py_DS_ML_Bootcamp-master\\09-Geographical-Plotting\\2014_World_Power_Consumption.csv')
+df.head()
+
+data = dict(
+    type = 'choropleth',
+    colorscale = 'plasma',
+    locations = df['Country'],
+    locationmode = 'country names',
+    z = df['Power Consumption KWH'],
+    colorbar = {'title' : 'Power Consumption KWH'}
+)
+
+layout = dict(
+    title = 'Power Consumption by Country',
+    geo = dict (
+        showframe = False,
+        projection_type = 'natural earth'
+    )
+)
+choromap4 = go.Figure(data = [data], layout = layout)
+# iplot(choromap4)
+choromap4.write_html("Power Consumption by Country.html", auto_open=True)
