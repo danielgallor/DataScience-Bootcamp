@@ -75,6 +75,8 @@ choromap3.write_html("International GDP Map.html")
 
 #--- EXERCISES ---
 
+#1
+
 df = pd.read_csv('C:\\Users\\Daniel.Gallo\\OneDrive - Xodus Group\\Documents\\Data Science\\Py-DS-ML-Bootcamp-master\\Refactored_Py_DS_ML_Bootcamp-master\\09-Geographical-Plotting\\2014_World_Power_Consumption.csv')
 df.head()
 
@@ -95,5 +97,31 @@ layout = dict(
     )
 )
 choromap4 = go.Figure(data = [data], layout = layout)
-# iplot(choromap4)
+iplot(choromap4)
 choromap4.write_html("Power Consumption by Country.html", auto_open=True)
+
+#2
+df = pd.read_csv('C:\\Users\\Daniel.Gallo\\OneDrive - Xodus Group\\Documents\\Data Science\\Py-DS-ML-Bootcamp-master\\Refactored_Py_DS_ML_Bootcamp-master\\09-Geographical-Plotting\\2012_Election_Data.csv')
+df.head()
+
+data = dict(
+    type = 'choropleth',
+    colorscale = 'viridis',
+    locations = df['State Abv'],
+    locationmode = 'USA-states',
+    z = df['Voting-Age Population (VAP)'],
+    colorbar_title = 'Million People'
+)
+
+layout = dict(
+    title = 'USA Voting Age Population',
+    geo =dict(
+        showframe = False,
+        scope = 'usa',
+        projection_type = 'natural earth'
+    )
+)
+
+choromap5 = go.Figure(data = [data], layout = layout)
+choromap5.write_html("USA Voting Age Population.html", auto_open=True)
+iplot(choromap5)
