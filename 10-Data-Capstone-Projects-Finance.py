@@ -1,6 +1,4 @@
-from pandas_datareader import data, wb
-import yfinance as yf
-import requests, certifi
+
 import pandas as pd
 import numpy as np
 import datetime
