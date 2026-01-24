@@ -26,8 +26,23 @@ returns.idxmin()
 
 returns.std()
 
+returns.loc["2015-01-01":"2015-12-31"].std()
 
 
+sns.displot(returns.loc["2015-01-01":"2015-12-31"]["MS Return"], kde = True)
+plt.show()
+
+sns.displot(returns.loc["2008-01-01":"2008-12-31"]["C Return"], kde = True)
+plt.show()
+
+for tick in tickers:
+    bank_stocks[tick]['Close'].plot(label = tick)
+plt.legend()
+plt.show()
 
 
-a=5
+plt.figure(figsize=(12,6))
+bank_stocks["BAC"]["Close"].loc["2008-01-01":"2009-01-01"].rolling(window = 30).mean().plot(label= '30 Day Average')
+bank_stocks["BAC"]["Close"].loc["2008-01-01":"2009-01-01"].plot(label = "BAC Close")
+plt.legend()
+plt.show()
