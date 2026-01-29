@@ -103,3 +103,21 @@ from sklearn.metrics import classification_report
 print(classification_report(y_test, predictions))
 
 
+## Excercise!!
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+ad_data = pd.read_csv("C:\\Users\\Daniel.Gallo\\OneDrive - Xodus Group\\Documents\\Data Science\\Py-DS-ML-Bootcamp-master\\Refactored_Py_DS_ML_Bootcamp-master\\13-Logistic-Regression\\advertising.csv")
+ad_data.head()
+ad_data.describe()
+ad_data.info()
+
+## Exploratory Data Analysis
+
+sns.displot(ad_data['Age'], bins = 30, )
+plt.show()
+
