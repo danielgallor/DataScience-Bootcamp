@@ -118,6 +118,41 @@ ad_data.info()
 
 ## Exploratory Data Analysis
 
+sns.set_style('whitegrid')
 sns.displot(ad_data['Age'], bins = 30, )
 plt.show()
 
+sns.jointplot(ad_data, x = 'Age', y = 'Area Income')
+plt.show()
+
+sns.jointplot(ad_data, x = 'Age', y = 'Daily Time Spent on Site', kind = 'kde', color = 'red')
+plt.show()
+
+sns.jointplot(ad_data, y = 'Daily Internet Usage', x = 'Daily Time Spent on Site')
+plt.show()
+
+sns.pairplot(ad_data, hue = 'Clicked on Ad')
+plt.show()
+
+## Logistic Regression
+
+from sklearn.model_selection import train_test_split
+
+X = ad_data.drop(['Clicked on Ad','Ad Topic Line','City','Country', 'Timestamp'] , axis = 1)
+y = ad_data['Clicked on Ad']
+
+X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.33, random_state=42)
+
+from sklearn.linear_model import LogisticRegression
+
+log = LogisticRegression(max_iter = 1000)
+log.fit(X_train, y_train)
+
+
+## Predictions and Evaluation
+
+predictions = log.predict(X_test)
+
+from sklearn.metrics import classification_report
+
+print(classification_report(y_test, predictions))
