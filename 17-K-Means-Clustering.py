@@ -52,3 +52,43 @@ plt.show()
 g = sns.FacetGrid(college, hue = 'Private')
 g = g.map(plt.hist, 'Outstate', bins = 20, alpha = 0.7)
 plt.show()
+
+g = sns.FacetGrid(college, hue = 'Private')
+g = g.map(plt.hist, 'Grad.Rate', bins = 20, alpha = 0.7)
+plt.show()
+
+
+college[college['Grad.Rate']>100]
+college['Grad.Rate']['Cazenovia College'] = 100
+
+college[college['Grad.Rate']>100]
+
+g = sns.FacetGrid(college, hue = 'Private')
+g = g.map(plt.hist, 'Grad.Rate', bins = 20, alpha = 0.7)
+plt.show()
+
+
+## K Means CLuster Creation
+
+from sklearn.cluster import KMeans
+
+km = KMeans(n_clusters=2)
+
+km.fit(college.drop('Private', axis = 1))
+
+km.cluster_centers_
+km.labels_
+
+##Evaluation
+def converter(cluster):
+        if cluster == "Yes":
+            return 1
+        else:
+             return 0
+
+college['Cluster'] = college['Private'].apply(converter)
+
+from sklearn.metrics import confusion_matrix, classification_report
+
+print(confusion_matrix(college['Cluster'], km.labels_))
+print(classification_report(college['Cluster'], km.labels_))
