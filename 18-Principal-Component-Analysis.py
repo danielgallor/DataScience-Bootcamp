@@ -34,7 +34,7 @@ x_pca = pca.transform(scaled_data)
 
 scaled_data.shape
 
-x_pca
+x_pca.shape
 
 # Now Plot
 
